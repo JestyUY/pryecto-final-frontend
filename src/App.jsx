@@ -1,7 +1,12 @@
 import "./App.css";
+import ContextualMusic from "./components/ContextualMusic";
 
 function App() {
-  return <div className="w-6 h-12 bg-slate-500"></div>;
-}
+  
+  return (
+  <>
+  <ContextualMusic/>
+  </>
+)}
 
 export default App;
