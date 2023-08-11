@@ -1,6 +1,6 @@
 function BgOrangeTop() {
   return (
-    <div className="w-screen h-[30%] bg-gradient-to-b from-orange-200 to-transparent absolute z-[-10]"></div>
+    <div className="w-full h-[20vh]  bg-gradient-to-b opacity-60 from-orange-200 to-transparent absolute  "></div>
   );
 }
 

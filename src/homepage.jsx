@@ -31,21 +31,37 @@ const googleLogo = (
     />
   </svg>
 );
+const appleLogo = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="20"
+    height="24"
+    viewBox="0 0 20 24"
+    fill="none"
+  >
+    <path
+      d="M14.5739 0.51151C14.5251 0.456885 12.7641 0.533072 11.2318 2.19625C9.69941 3.85799 9.93516 5.76411 9.96966 5.81298C10.0042 5.86186 12.1546 5.93804 13.5275 4.00462C14.9003 2.07119 14.6228 0.567572 14.5739 0.51151ZM19.3378 17.3776C19.2688 17.2396 15.9956 15.6037 16.3004 12.4585C16.6051 9.31184 18.7082 8.44934 18.7412 8.35591C18.7743 8.26247 17.8831 7.22029 16.9386 6.69273C16.2452 6.32078 15.4777 6.10768 14.6918 6.06886C14.5366 6.06454 13.9975 5.93229 12.8892 6.23561C12.159 6.43542 10.513 7.08229 10.0602 7.10816C9.60597 7.13404 8.25473 6.35779 6.80142 6.15223C5.87137 5.97254 4.88525 6.34054 4.17944 6.62373C3.47507 6.90548 2.13532 7.7076 1.19808 9.8394C0.260833 11.9698 0.751018 15.345 1.10177 16.3944C1.45251 17.4423 2.0002 19.1601 2.93169 20.4136C3.75969 21.8281 4.85793 22.8099 5.31649 23.1434C5.77506 23.4769 7.0688 23.6983 7.96579 23.2397C8.68742 22.797 9.98978 22.5425 10.5044 22.5612C11.0176 22.5799 12.0296 22.7826 13.066 23.336C13.8868 23.6192 14.6631 23.5013 15.4408 23.1851C16.2184 22.8674 17.344 21.6628 18.6579 19.2205C19.1567 18.0849 19.3838 17.471 19.3378 17.3776Z"
+      fill="#26262E"
+    />
+  </svg>
+);
 
 function HomePage() {
   return (
-    <div className="bg-cover bg-no-repeat w-screen h-screen sm:max-w-3xl sm:max-h-[1200px] m-auto bg-[url('https://s3-alpha-sig.figma.com/img/aa2f/36c0/a746f7d5f282311ee9a5d9aba5746e99?Expires=1692576000&Signature=nA7E5jX4BYugZSz-pV2IXUo2gGqYqG-OIFqCzG09fapjw~4WZYG-e~bUTqLZyUip4QNZrOauH9pwpA1gT9Ki7iWMbZ8tRmU0AKAeqhf2D1NFAqZK2TGqhby18AFIQ~6u5DIszDnwZ2KKgjiSREdM7Z-d4gS87qhluuSIQH7aNJCNRxwjOuNQvZ3jmhAvFwlsXeoK~-OmmG70fsuviXU3WQk-heXllfclg0S899WSbm4l7IxmZZ61h-ibS1pc-Zk1Ipi8Wc2eESXyNAb2KjjJEqApQ7T~7r~2ip~btqVhxgU6awmcw6EVl4Q52D1QqrGxzvHYtSewI39AKRWIoaTllw__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4')]">
-      <div className="absolute bg-gradient-to-t from-white  bg- from-15% to-transparent h-screen w-screen z-10">
-        <BgOrangeTop />
-        <div className="mx-auto w-[208px]  mt-[40%] ">{mainLogo}</div>
+    <div className="bg-cover bg-no-repeat w-full h-full  m-auto bg-[url('https://s3-alpha-sig.figma.com/img/aa2f/36c0/a746f7d5f282311ee9a5d9aba5746e99?Expires=1692576000&Signature=nA7E5jX4BYugZSz-pV2IXUo2gGqYqG-OIFqCzG09fapjw~4WZYG-e~bUTqLZyUip4QNZrOauH9pwpA1gT9Ki7iWMbZ8tRmU0AKAeqhf2D1NFAqZK2TGqhby18AFIQ~6u5DIszDnwZ2KKgjiSREdM7Z-d4gS87qhluuSIQH7aNJCNRxwjOuNQvZ3jmhAvFwlsXeoK~-OmmG70fsuviXU3WQk-heXllfclg0S899WSbm4l7IxmZZ61h-ibS1pc-Zk1Ipi8Wc2eESXyNAb2KjjJEqApQ7T~7r~2ip~btqVhxgU6awmcw6EVl4Q52D1QqrGxzvHYtSewI39AKRWIoaTllw__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4')]">
+      <BgOrangeTop />
+      <div className=" bg-gradient-to-t from-white  bg- from-15% to-transparent h-full w-full  ">
+        <div className="mx-auto w-[208px]  pt-[45%] ">
+          <span className="">{mainLogo}</span>
+        </div>
         <span className="mx-auto w-[250px] block text-center pt-6 font-semibold text-3xl">
           Musica a medida.
         </span>
 
-        <div className="absolute bottom-[10%] left-0 right-0 ">
+        <div className="w-[100%] mx-auto pt-[55%] ">
           <OrangeButton bgcolor={"bg-amber-500"} text={"Registrate Gratis"} />
           <NormalButton img={googleLogo} text={"Continuar Con Google"} />
-          <NormalButton text={"Continuar con Apple"} />
+          <NormalButton img={appleLogo} text={"Continuar con Apple"} />
           <a
             className="mx-auto w-[90%] block text-center text-2xl pt-5"
             href=""
