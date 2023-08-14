@@ -1,7 +1,21 @@
 import "../components/ContextualMusic.css";
 import arrowLeft from "../assets/Images/arrowLeft.svg"
+import React, { useEffect, useState } from "react"
+
+
 
 const ContextualMusic = () => {
+
+
+  const [songs, setSongs] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:3000/app/songs")
+      .then((response) => response.json())
+      .then((data) => setSongs(data));
+
+    console.log(songs);
+  }, []);
+  
 
   return (
     <main className="main">
@@ -13,6 +27,7 @@ const ContextualMusic = () => {
           <div>
             <h3 className="h3">Música Contextual</h3>
           </div>
+          <div></div>
         </nav>
       </div>
       <section className="sectionSelects">
