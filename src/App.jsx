@@ -1,4 +1,5 @@
 import "./App.css";
+import ContextualMusic from "./components/ContextualMusic";
 
 import CreateAccountSecond from "./CreateAccountSecond";
 

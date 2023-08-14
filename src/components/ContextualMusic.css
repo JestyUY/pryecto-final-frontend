@@ -1,0 +1,129 @@
+.main {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.navConteiner {
+    padding-bottom: 5px;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+    height: 100px;
+    background: linear-gradient(360deg, rgba(253, 254, 255, 0) 25%, rgba(255, 141, 10, 0.288) 75%, rgba(255, 141, 10, 0.363) 100%);
+    ;
+}
+
+.h3 {
+    font-size: 22px;
+}
+
+.navBar {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    font-size: 16px;
+    align-items: center;
+}
+
+.arrowLeft {
+    width: 20px;
+    height: 23px;
+    left: 20px;
+    top: 40px;
+    position: absolute;
+}
+
+.allSelects {
+    width: 100%;
+    max-width: 500px;
+    height: 48px;
+    border-radius: 0px 16px;
+    border: 2px solid #26262E;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+
+}
+
+#selectFirst:focus-visible {
+    border: 2px solid #FF8E0A;
+}
+
+.options {
+    font-size: 16px;
+    color: #26262E;
+    border: 2px solid #26262E;
+}
+
+.sectionSelects {
+    width: 90%;
+    max-width: 450px;
+    height: 45%;
+    align-items: center;
+    justify-content: space-around;
+    display: flex;
+    flex-direction: column;
+}
+
+.selections {
+    font-size: 20px;
+    text-align: center;
+    color: #26262E;
+    letter-spacing: 0.5px;
+
+}
+
+.titleGenero {
+    font-size: 23px;
+    width: 320px;
+    text-align: center;
+    height: 32px;
+}
+
+.sectionGenres {
+    margin-top: 16px;
+    width: 100%;
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.divButtons {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.Buttons {
+    border: 2px solid #26262E;
+    border-radius: 0px 12px;
+    height: 36px;
+    padding: 6px 8px;
+    background: none;
+    font-size: 14px;
+}
+
+.Buttons:focus-within {
+    background: #26262E;
+    color: #FDFEFF;
+}
+
+.buttonCreate {
+    font-size: 24px;
+    font-weight: 400;
+    background: #FF8E0A;
+    border-radius: 0px 16px;
+    bottom: 4%;
+    width: 90%;
+    height: 48px;
+    color: white;
+    border: none;
+    left: 22px;
+}
