@@ -1,5 +1,9 @@
 import "./App.css";
-import NormalButton from "./assets/components/normal-button";
+import NormalButton from "./components/normal-button";
+import OrangeButton from "./components/orange-button";
+import BgOrangeTop from "./components/bg-orange-top";
+import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 const mainLogo = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -14,16 +18,71 @@ const mainLogo = (
     />
   </svg>
 );
+const googleLogo = (
+  <svg
+    width="22"
+    height="22"
+    viewBox="0 0 22 22"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      id="google-logo"
+      d="M21.0865 9.03098C21.2177 9.7339 21.2891 10.4688 21.2891 11.2357C21.2891 17.2345 17.2743 21.5 11.2104 21.5C9.83145 21.5004 8.46588 21.2291 7.19177 20.7016C5.91767 20.1741 4.75999 19.4007 3.78489 18.4256C2.80979 17.4505 2.03638 16.2928 1.50886 15.0187C0.981333 13.7446 0.710029 12.379 0.71045 11C0.710029 9.621 0.981333 8.25543 1.50886 6.98133C2.03638 5.70722 2.80979 4.54954 3.78489 3.57444C4.75999 2.59934 5.91767 1.82593 7.19177 1.29841C8.46588 0.770884 9.83145 0.49958 11.2104 0.5C14.0456 0.5 16.4146 1.54317 18.2321 3.237L15.2722 6.19692V6.18946C14.1704 5.13988 12.772 4.60123 11.2104 4.60123C7.746 4.60123 4.93008 7.52809 4.93008 10.9936C4.93008 14.458 7.746 17.3913 11.2104 17.3913C14.3538 17.3913 16.4935 15.594 16.933 13.1258H11.2104V9.03098H21.0875H21.0865Z"
+      fill="#26262E"
+    />
+  </svg>
+);
+const appleLogo = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="20"
+    height="24"
+    viewBox="0 0 20 24"
+    fill="none"
+  >
+    <path
+      d="M14.5739 0.51151C14.5251 0.456885 12.7641 0.533072 11.2318 2.19625C9.69941 3.85799 9.93516 5.76411 9.96966 5.81298C10.0042 5.86186 12.1546 5.93804 13.5275 4.00462C14.9003 2.07119 14.6228 0.567572 14.5739 0.51151ZM19.3378 17.3776C19.2688 17.2396 15.9956 15.6037 16.3004 12.4585C16.6051 9.31184 18.7082 8.44934 18.7412 8.35591C18.7743 8.26247 17.8831 7.22029 16.9386 6.69273C16.2452 6.32078 15.4777 6.10768 14.6918 6.06886C14.5366 6.06454 13.9975 5.93229 12.8892 6.23561C12.159 6.43542 10.513 7.08229 10.0602 7.10816C9.60597 7.13404 8.25473 6.35779 6.80142 6.15223C5.87137 5.97254 4.88525 6.34054 4.17944 6.62373C3.47507 6.90548 2.13532 7.7076 1.19808 9.8394C0.260833 11.9698 0.751018 15.345 1.10177 16.3944C1.45251 17.4423 2.0002 19.1601 2.93169 20.4136C3.75969 21.8281 4.85793 22.8099 5.31649 23.1434C5.77506 23.4769 7.0688 23.6983 7.96579 23.2397C8.68742 22.797 9.98978 22.5425 10.5044 22.5612C11.0176 22.5799 12.0296 22.7826 13.066 23.336C13.8868 23.6192 14.6631 23.5013 15.4408 23.1851C16.2184 22.8674 17.344 21.6628 18.6579 19.2205C19.1567 18.0849 19.3838 17.471 19.3378 17.3776Z"
+      fill="#26262E"
+    />
+  </svg>
+);
+
 function HomePage() {
+  const [songs, setSongs] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:3000/app/songs")
+      .then((response) => response.json())
+      .then((data) => setSongs(data));
+
+    console.log(songs);
+  }, []);
+
   return (
-    <div className="bg-cover bg-no-repeat w-screen h-screen sm:max-w-3xl sm:max-h-[1200px] m-auto bg-[url('https://s3-alpha-sig.figma.com/img/aa2f/36c0/a746f7d5f282311ee9a5d9aba5746e99?Expires=1692576000&Signature=nA7E5jX4BYugZSz-pV2IXUo2gGqYqG-OIFqCzG09fapjw~4WZYG-e~bUTqLZyUip4QNZrOauH9pwpA1gT9Ki7iWMbZ8tRmU0AKAeqhf2D1NFAqZK2TGqhby18AFIQ~6u5DIszDnwZ2KKgjiSREdM7Z-d4gS87qhluuSIQH7aNJCNRxwjOuNQvZ3jmhAvFwlsXeoK~-OmmG70fsuviXU3WQk-heXllfclg0S899WSbm4l7IxmZZ61h-ibS1pc-Zk1Ipi8Wc2eESXyNAb2KjjJEqApQ7T~7r~2ip~btqVhxgU6awmcw6EVl4Q52D1QqrGxzvHYtSewI39AKRWIoaTllw__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4')]">
-      <div className="absolute bg-gradient-to-t from-white  bg- from-10% to-transparent h-screen w-screen z-10">
-        <div className="mx-auto w-[208px]  mt-[40%]">{mainLogo}</div>
+    <div className="w-screen h-screen max-w-md max-h-min m-auto relative bg-cover bg-no-repeat  bg-[url('https://s3-alpha-sig.figma.com/img/aa2f/36c0/a746f7d5f282311ee9a5d9aba5746e99?Expires=1692576000&Signature=nA7E5jX4BYugZSz-pV2IXUo2gGqYqG-OIFqCzG09fapjw~4WZYG-e~bUTqLZyUip4QNZrOauH9pwpA1gT9Ki7iWMbZ8tRmU0AKAeqhf2D1NFAqZK2TGqhby18AFIQ~6u5DIszDnwZ2KKgjiSREdM7Z-d4gS87qhluuSIQH7aNJCNRxwjOuNQvZ3jmhAvFwlsXeoK~-OmmG70fsuviXU3WQk-heXllfclg0S899WSbm4l7IxmZZ61h-ibS1pc-Zk1Ipi8Wc2eESXyNAb2KjjJEqApQ7T~7r~2ip~btqVhxgU6awmcw6EVl4Q52D1QqrGxzvHYtSewI39AKRWIoaTllw__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4')]">
+      <BgOrangeTop />
+
+      <div className=" bg-gradient-to-t from-white  bg- from-15% to-transparent h-full w-full  ">
+        <div className="mx-auto w-[208px]  pt-[45%] ">
+          <span className="">{mainLogo}</span>
+        </div>
         <span className="mx-auto w-[250px] block text-center pt-6 font-semibold text-3xl">
           Musica a medida.
         </span>
-        <NormalButton text={"Continuar Con Google"} />
-        <NormalButton text={"Continuar con Apple"} />
+
+        <div className="w-[100%] mx-auto pt-[55%] ">
+          <Link to={"/register"}>
+            <OrangeButton bgcolor={"bg-amber-500"} text={"Registrate Gratis"} />
+          </Link>
+          <NormalButton img={googleLogo} text={"Continuar Con Google"} />
+          <NormalButton img={appleLogo} text={"Continuar con Apple"} />
+          <a
+            className="mx-auto w-[90%] block text-center text-2xl pt-5"
+            href=""
+          >
+            Iniciar Sesion
+          </a>
+        </div>
       </div>
     </div>
   );
