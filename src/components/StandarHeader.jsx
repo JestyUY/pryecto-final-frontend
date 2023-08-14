@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const backArrow = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -16,10 +18,12 @@ const backArrow = (
   </svg>
 );
 
-function StandarHeader({ text }) {
+function StandarHeader({ text, url }) {
   return (
-    <nav className="flex absolute w-full justify-between p-4 pt-8 text-xl font-semibold items-center">
-      <span className="scale-150">{backArrow}</span>
+    <nav className="flex absolute w-full justify-between p-4 pt-8 text-xl font-semibold items-center ">
+      <Link to={url}>
+        <span className="scale-150">{backArrow}</span>
+      </Link>
       <span>{text}</span>
       <span></span>
     </nav>

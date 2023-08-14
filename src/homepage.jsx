@@ -2,6 +2,8 @@ import "./App.css";
 import NormalButton from "./components/normal-button";
 import OrangeButton from "./components/orange-button";
 import BgOrangeTop from "./components/bg-orange-top";
+import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 const mainLogo = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -47,9 +49,19 @@ const appleLogo = (
 );
 
 function HomePage() {
+  const [songs, setSongs] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:3000/app/songs")
+      .then((response) => response.json())
+      .then((data) => setSongs(data));
+
+    console.log(songs);
+  }, []);
+
   return (
-    <div className="bg-cover bg-no-repeat w-full h-full  m-auto bg-[url('https://s3-alpha-sig.figma.com/img/aa2f/36c0/a746f7d5f282311ee9a5d9aba5746e99?Expires=1692576000&Signature=nA7E5jX4BYugZSz-pV2IXUo2gGqYqG-OIFqCzG09fapjw~4WZYG-e~bUTqLZyUip4QNZrOauH9pwpA1gT9Ki7iWMbZ8tRmU0AKAeqhf2D1NFAqZK2TGqhby18AFIQ~6u5DIszDnwZ2KKgjiSREdM7Z-d4gS87qhluuSIQH7aNJCNRxwjOuNQvZ3jmhAvFwlsXeoK~-OmmG70fsuviXU3WQk-heXllfclg0S899WSbm4l7IxmZZ61h-ibS1pc-Zk1Ipi8Wc2eESXyNAb2KjjJEqApQ7T~7r~2ip~btqVhxgU6awmcw6EVl4Q52D1QqrGxzvHYtSewI39AKRWIoaTllw__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4')]">
+    <div className="w-screen h-screen max-w-md max-h-min m-auto relative bg-cover bg-no-repeat  bg-[url('https://s3-alpha-sig.figma.com/img/aa2f/36c0/a746f7d5f282311ee9a5d9aba5746e99?Expires=1692576000&Signature=nA7E5jX4BYugZSz-pV2IXUo2gGqYqG-OIFqCzG09fapjw~4WZYG-e~bUTqLZyUip4QNZrOauH9pwpA1gT9Ki7iWMbZ8tRmU0AKAeqhf2D1NFAqZK2TGqhby18AFIQ~6u5DIszDnwZ2KKgjiSREdM7Z-d4gS87qhluuSIQH7aNJCNRxwjOuNQvZ3jmhAvFwlsXeoK~-OmmG70fsuviXU3WQk-heXllfclg0S899WSbm4l7IxmZZ61h-ibS1pc-Zk1Ipi8Wc2eESXyNAb2KjjJEqApQ7T~7r~2ip~btqVhxgU6awmcw6EVl4Q52D1QqrGxzvHYtSewI39AKRWIoaTllw__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4')]">
       <BgOrangeTop />
+
       <div className=" bg-gradient-to-t from-white  bg- from-15% to-transparent h-full w-full  ">
         <div className="mx-auto w-[208px]  pt-[45%] ">
           <span className="">{mainLogo}</span>
@@ -59,7 +71,9 @@ function HomePage() {
         </span>
 
         <div className="w-[100%] mx-auto pt-[55%] ">
-          <OrangeButton bgcolor={"bg-amber-500"} text={"Registrate Gratis"} />
+          <Link to={"/register"}>
+            <OrangeButton bgcolor={"bg-amber-500"} text={"Registrate Gratis"} />
+          </Link>
           <NormalButton img={googleLogo} text={"Continuar Con Google"} />
           <NormalButton img={appleLogo} text={"Continuar con Apple"} />
           <a
