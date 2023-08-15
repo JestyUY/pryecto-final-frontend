@@ -1,6 +1,4 @@
 import "./App.css";
-import ContextualMusic from "./components/ContextualMusic";
-import React, { useEffect, useState } from "react"
 
 import CreateAccountSecond from "./CreateAccountSecond";
 
