@@ -7,6 +7,11 @@ import "./App.css";
 import HomePage from "./homepage";
 import CreateAccount from "./CreateAccount";
 import CreateAccountSecond from "./CreateAccountSecond";
+import ContextualMusic from "./components/ContextualMusic";
+import MusicalCupid from "./components/MusicalCupid";
+
+
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -20,6 +25,15 @@ const router = createBrowserRouter([
     path: "/register/new",
     element: <CreateAccountSecond />,
   },
+  {
+    path: "/contextualmusic",
+    element: <ContextualMusic />,
+  },
+  {
+    path: "/musicalcupid",
+    element: <MusicalCupid />,
+  },
+ 
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

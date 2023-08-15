@@ -93,9 +93,11 @@
 }
 
 .divButtons {
+    width: 90%;
+    max-width: 450px;
     display: flex;
     justify-content: space-between;
-    gap: 12px;
+    gap: 6px;
     flex-wrap: wrap;
 }
 
@@ -108,7 +110,7 @@
     font-size: 14px;
 }
 
-.Buttons:focus-within {
+.Buttons:focus {
     background: #26262E;
     color: #FDFEFF;
 }
