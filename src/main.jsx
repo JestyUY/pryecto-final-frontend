@@ -7,9 +7,17 @@ import "./App.css";
 import HomePage from "./homepage";
 
 import CreateAccountSecond from "./CreateAccountSecond";
+<<<<<<< HEAD
 import LoginPage from "./Login";
 import MainMenu from "./MainMenu";
 import SearchMenu from "./SearchMenu";
+=======
+import ContextualMusic from "./components/ContextualMusic";
+import MusicalCupid from "./components/MusicalCupid";
+
+
+
+>>>>>>> b4655bc6eda163a4fd2d3b47115959675618d0b3
 const router = createBrowserRouter([
   {
     path: "/",
@@ -20,6 +28,7 @@ const router = createBrowserRouter([
     element: <CreateAccountSecond />,
   },
   {
+<<<<<<< HEAD
     path: "/login",
     element: <LoginPage />,
   },
@@ -28,6 +37,16 @@ const router = createBrowserRouter([
     element: <MainMenu />,
   },
   { path: "/search", element: <SearchMenu /> },
+=======
+    path: "/contextualmusic",
+    element: <ContextualMusic />,
+  },
+  {
+    path: "/musicalcupid",
+    element: <MusicalCupid />,
+  },
+ 
+>>>>>>> b4655bc6eda163a4fd2d3b47115959675618d0b3
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

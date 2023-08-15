@@ -22,7 +22,7 @@
 
 .navBar {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     height: 100%;
     font-size: 16px;
     align-items: center;
@@ -31,9 +31,7 @@
 .arrowLeft {
     width: 20px;
     height: 23px;
-    left: 20px;
-    top: 40px;
-    position: absolute;
+  
 }
 
 .allSelects {
@@ -95,9 +93,11 @@
 }
 
 .divButtons {
+    width: 90%;
+    max-width: 450px;
     display: flex;
     justify-content: space-between;
-    gap: 12px;
+    gap: 6px;
     flex-wrap: wrap;
 }
 
@@ -110,7 +110,7 @@
     font-size: 14px;
 }
 
-.Buttons:focus-within {
+.Buttons:focus {
     background: #26262E;
     color: #FDFEFF;
 }
@@ -122,6 +122,7 @@
     border-radius: 0px 16px;
     bottom: 4%;
     width: 90%;
+    max-width: 450px;
     height: 48px;
     color: white;
     border: none;
