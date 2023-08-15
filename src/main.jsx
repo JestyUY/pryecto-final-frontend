@@ -5,8 +5,11 @@ import "./index.css";
 // import HomePage from "./homepage";
 import "./App.css";
 import HomePage from "./homepage";
-import CreateAccount from "./CreateAccount";
+
 import CreateAccountSecond from "./CreateAccountSecond";
+import LoginPage from "./Login";
+import MainMenu from "./MainMenu";
+import SearchMenu from "./SearchMenu";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -14,12 +17,17 @@ const router = createBrowserRouter([
   },
   {
     path: "/register",
-    element: <CreateAccount />,
-  },
-  {
-    path: "/register/new",
     element: <CreateAccountSecond />,
   },
+  {
+    path: "/login",
+    element: <LoginPage />,
+  },
+  {
+    path: "/menu",
+    element: <MainMenu />,
+  },
+  { path: "/search", element: <SearchMenu /> },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

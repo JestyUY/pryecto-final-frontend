@@ -54,8 +54,6 @@ function HomePage() {
     fetch("http://localhost:3000/app/songs")
       .then((response) => response.json())
       .then((data) => setSongs(data));
-
-    console.log(songs);
   }, []);
 
   return (
@@ -78,7 +76,7 @@ function HomePage() {
           <NormalButton img={appleLogo} text={"Continuar con Apple"} />
           <a
             className="mx-auto w-[90%] block text-center text-2xl pt-5"
-            href=""
+            href="/login"
           >
             Iniciar Sesion
           </a>
