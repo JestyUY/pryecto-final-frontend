@@ -12,6 +12,7 @@ import MainMenu from "./MainMenu";
 import SearchMenu from "./SearchMenu";
 import ContextualMusic from "./components/ContextualMusic";
 import MusicalCupid from "./components/MusicalCupid";
+import UserProfile from "./components/profile";
 
 const router = createBrowserRouter([
   {
@@ -30,11 +31,21 @@ const router = createBrowserRouter([
     path: "/menu",
     element: <MainMenu />,
   },
-  { path: "/search", element: <SearchMenu /> },
-  { path: "/contextualmusic", element: <ContextualMusic /> },
+  {
+    path: "/search",
+    element: <SearchMenu />
+  },
+  {
+    path: "/contextualmusic",
+    element: <ContextualMusic />
+  },
   {
     path: "/musicalcupid",
     element: <MusicalCupid />,
+  },
+  {
+    path: "/profile",
+    element: <UserProfile />,
   },
 ]);
 
