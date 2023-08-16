@@ -1,4 +1,5 @@
 import BgOrangeTop from "./components/bg-orange-top";
+import { useNavigate } from "react-router";
 const clock = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -104,6 +105,7 @@ const friends = (
   </svg>
 );
 function MainMenu() {
+  const navigate = useNavigate();
   return (
     <main className="w-screen h-screen max-w-md max-h-min m-auto relative ">
       <BgOrangeTop />
@@ -135,7 +137,7 @@ function MainMenu() {
           <span className="scale-75">{home}</span>
           <span>Home</span>
         </button>
-        <button className="flex flex-col">
+        <button className="flex flex-col" onClick={() => navigate("/search")}>
           <span className="scale-75">{search}</span> <span>Search</span>
         </button>
         <button className="flex flex-col">

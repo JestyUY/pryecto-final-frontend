@@ -1,14 +1,12 @@
 import "../components/ContextualMusic.css";
-import arrowLeft from "../assets/Images/arrowLeft.svg"
-import React, { useEffect, useState } from "react"
-
-
+import arrowLeft from "../assets/Images/arrowLeft.svg";
+import { useEffect, useState } from "react";
+import InputStandar from "./InputStandar";
 
 const ContextualMusic = () => {
-
+  const [playlistName, setPlaylistName] = useState("");
   const [songs, setSongs] = useState([]);
-  const [addFilters, setAddFilters] = useState([]);
-
+  const [addFilters, setAddFilters] = useState(songs);
 
   useEffect(() => {
     fetch("http://localhost:3000/app/songs")
@@ -16,53 +14,68 @@ const ContextualMusic = () => {
       .then((data) => setSongs(data));
   }, []);
 
-  const filterUniqueByProperty = (arr, property) => { // filtra para que no repita las opciones en el select
-    return Array.from(new Set(arr.map(item => item[property]))).map(value => {
-      return arr.find(item => item[property] === value);
-    });
-  }
+  useEffect(() => {
+    setAddFilters(songs);
+  }, [songs]);
+
+  const filterUniqueByProperty = (arr, property) => {
+    // filtra para que no repita las opciones en el select
+    return Array.from(new Set(arr.map((item) => item[property]))).map(
+      (value) => {
+        return arr.find((item) => item[property] === value);
+      }
+    );
+  };
 
   const genres = filterUniqueByProperty(songs, "genre");
   const moods = filterUniqueByProperty(songs, "mood");
   const occasions = filterUniqueByProperty(songs, "occasion");
   const weathers = filterUniqueByProperty(songs, "weather");
 
-
-  const handleGenre = (value) => { // agrega las cancioens segun lo seleccionado al array de canciones
+  const handleGenre = (value) => {
+    // agrega las cancioens segun lo seleccionado al array de canciones
     const selectedValue = value;
-    const filterObject = songs.filter((filter) => selectedValue === filter.genre)
-    filterObject.forEach((obj) => { setAddFilters(prevFilters => [...prevFilters, obj]); })
+    const filterObject = addFilters.filter(
+      (filter) => selectedValue === filter.genre
+    );
+    setAddFilters(filterObject);
   };
 
-
-  const handleMood = (event) => { // agrega las cancioens segun lo seleccionado al array de canciones
+  const handleMood = (event) => {
+    // agrega las cancioens segun lo seleccionado al array de canciones
     const selectedValue = event.target.value;
-    const filterObject = songs.filter((filter) => selectedValue === filter.mood)
-    filterObject.forEach((obj) => { setAddFilters(prevFilters => [...prevFilters, obj]); })
+    const filterObject = addFilters.filter((obj) => selectedValue === obj.mood);
+
+    setAddFilters(filterObject);
   };
 
-  const handleOccasion = (event) => { // agrega las cancioens segun lo seleccionado al array de canciones
+  const handleOccasion = (event) => {
+    // agrega las cancioens segun lo seleccionado al array de canciones
     const selectedValue = event.target.value;
-    const filterObject = songs.filter((filter) => selectedValue === filter.occasion)
-    filterObject.forEach((obj) => { setAddFilters(prevFilters => [...prevFilters, obj]); });
-
+    const filterObject = addFilters.filter(
+      (filter) => selectedValue === filter.occasion
+    );
+    setAddFilters(filterObject);
   };
 
-  const handleWeather = (event) => {  // agrega las cancioens segun lo seleccionado al array de canciones
+  const handleWeather = (event) => {
+    // agrega las cancioens segun lo seleccionado al array de canciones
     const selectedValue = event.target.value;
-    const filterObject = songs.filter((filter) => selectedValue === filter.weather);
-    filterObject.forEach((obj) => { setAddFilters(prevFilters => [...prevFilters, obj]); })
-
+    const filterObject = addFilters.filter(
+      (filter) => selectedValue === filter.weather
+    );
+    setAddFilters(filterObject);
   };
 
-  const uniqueData = addFilters.filter((item, index, self) =>
-    index === self.findIndex(obj => obj.title === item.title) // filtra todo lo repetido, uniqueData es el array final
-  );
+  // const uniqueData = addFilters.filter(
+  //   (item, index, self) =>
+  //     index === self.findIndex((obj) => obj.title === item.title) // filtra todo lo repetido, uniqueData es el array final
+  // );
 
-  console.log(uniqueData);
+  console.log(addFilters);
 
   return (
-    <main className="main">
+    <main className="main w-screen h-screen max-w-md max-h-min m-auto relative">
       <div className="navConteiner">
         <nav className="navBar">
           <div className="divArrow">
@@ -75,11 +88,13 @@ const ContextualMusic = () => {
         </nav>
       </div>
       <section className="sectionSelects">
+        <label className="font-bold text-2xl">Nombre de la playlist</label>
+        <InputStandar handleChange={(e) => setPlaylistName(e.target.value)} />
         <label className="selections">
           <b>¿Cuál es la ocasión?</b>
         </label>
         <select className="allSelects" onChange={handleOccasion}>
-          <option className="options" name="Actividad" disabled value>
+          <option className="options" name="Actividad" disabled selected>
             Actividad
           </option>
           {occasions.map((occasions, index) => {
@@ -98,16 +113,12 @@ const ContextualMusic = () => {
           <b>¿Cómo te sientes?</b>
         </label>
         <select className="allSelects" onChange={handleMood}>
-          <option className="options" name="Actividad" disabled value>
+          <option className="options" name="Actividad" disabled selected>
             Estado de animo
           </option>
           {moods.map((moods, index) => {
             return (
-              <option
-                className="options"
-                value={moods.mood}
-                key={index}
-              >
+              <option className="options" value={moods.mood} key={index}>
                 {moods.mood}
               </option>
             );
@@ -117,16 +128,12 @@ const ContextualMusic = () => {
           <b>¿Cómo está el clima?</b>
         </label>
         <select className="allSelects" onChange={handleWeather}>
-          <option className="options" name="Actividad" disabled value>
+          <option className="options" name="Actividad" disabled selected>
             Clima
           </option>
           {weathers.map((weathers, index) => {
             return (
-              <option
-                className="options"
-                value={weathers.weather}
-                key={index}
-              >
+              <option className="options" value={weathers.weather} key={index}>
                 {weathers.weather}
               </option>
             );
@@ -135,12 +142,15 @@ const ContextualMusic = () => {
       </section>
       <section className="sectionGenres">
         <h3 className="titleGenero">
-          <b>Selecciona hasta 3 géneros:</b></h3>
+          <b>Selecciona un genero:</b>
+        </h3>
         <div className="divButtons">
           {genres.map((genres, index) => {
             return (
               <button
-                onClick={() => { handleGenre(genres.genre) }}
+                onClick={() => {
+                  handleGenre(genres.genre);
+                }}
                 className="Buttons"
                 value={genres.genre}
                 key={index}
@@ -150,12 +160,10 @@ const ContextualMusic = () => {
             );
           })}
         </div>
-        <button className="buttonCreate">
-          Crear Playlist
-        </button>
+        <button className="buttonCreate">Crear Playlist</button>
       </section>
     </main>
   );
-}
+};
 
 export default ContextualMusic;

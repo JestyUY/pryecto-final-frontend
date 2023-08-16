@@ -1,16 +1,22 @@
 import { useEffect, useState } from "react";
 import InputStandar from "./components/InputStandar";
 import BgOrangeTop from "./components/bg-orange-top";
-
+import { useNavigate } from "react-router";
 function SearchMenu() {
+  const navigate = useNavigate();
   const [songs, setSongs] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch("http://localhost:3000/app/songs");
+        const response = await fetch("http://localhost:3000/app/songs", {
+          headers: {
+            "Content-type": "application/json",
+            authorization: `${localStorage.getItem("token")}`, // notice the Bearer before your token
+          },
+        });
         const data = await response.json();
-        const first20Songs = data.slice(0, 20); // Get the first 20 items
+        const first20Songs = await data.slice(0, 20); // Get the first 20 items
         setSongs(first20Songs);
         console.log(first20Songs);
       } catch (error) {
@@ -18,7 +24,11 @@ function SearchMenu() {
       }
     }
 
-    fetchData();
+    if (localStorage.getItem("token") == null) {
+      navigate("/login");
+    } else {
+      fetchData();
+    }
   }, []);
   return (
     <main className="w-screen h-screen max-w-md max-h-min m-auto relative">
@@ -32,10 +42,10 @@ function SearchMenu() {
         <span className="bg-slate-300 w-full h-[2px] block shrink"></span>
       </div>
       <section className="absolute top-[28%] w-[90%] left-0 right-0 m-auto ">
-        <ul className="flex flex-wrap ">
+        <ul className="flex flex-wrap place-content-evenly ">
           {songs.map((ob) => (
-            <li className="w-[45%] flex flex-col ">
-              <img src={ob.image} alt="" />
+            <li className="w-[45%]  flex flex-col ">
+              <img className="h-[158px] " src={ob.image} alt="" />
               <span className="p-4">{ob.title}</span>
               <span>{ob.artist}</span>
             </li>

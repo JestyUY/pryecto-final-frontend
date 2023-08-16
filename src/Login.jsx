@@ -15,10 +15,6 @@ function LoginPage() {
   const sendData = () => {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-    myHeaders.append(
-      "Authorization",
-      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InBlZHJpMTAiLCJpYXQiOjE2OTE5NzMwNTV9.j_xTzdXuMYApVAS5hhVCdbDiowPQW9-JQtvxEEZWcHw"
-    );
 
     const raw = JSON.stringify({
       username: userInfo,
@@ -41,14 +37,11 @@ function LoginPage() {
       console.log(data);
       setResp(data);
       localStorage.setItem("token", data.token);
-      const cat = localStorage.getItem("token");
-      console.log(cat);
+      if (data.token !== undefined) {
+        navigate("/menu");
+      }
     }
     fetching();
-
-    if (resp !== undefined) {
-      navigate("/");
-    }
   };
   return (
     <div className="w-screen h-screen max-w-md max-h-min m-auto relative">
@@ -56,7 +49,7 @@ function LoginPage() {
       <StandarHeader url={"/"} text={"Log in"} />
       <form
         action=""
-        className=" mx-auto w-[80%] pt-[25%]  flex flex-col gap-3 "
+        className=" mx-auto w-[80%] pt-[30%]  flex flex-col gap-3 "
       >
         <label htmlFor="">Username or E-mail</label>
         <InputStandar handleChange={(e) => setUserInfo(e.target.value)} />
