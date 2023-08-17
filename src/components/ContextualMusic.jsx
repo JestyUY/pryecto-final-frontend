@@ -2,24 +2,33 @@ import "../components/ContextualMusic.css";
 import arrowLeft from "../assets/Images/arrowLeft.svg";
 import { useEffect, useState } from "react";
 import InputStandar from "./InputStandar";
+import { useNavigate } from "react-router";
 
 const ContextualMusic = () => {
   const [playlistName, setPlaylistName] = useState("");
   const [songs, setSongs] = useState([]);
   const [addFilters, setAddFilters] = useState(songs);
+  const navigate = useNavigate();
 
   useEffect(() => {
+    
+    if (localStorage.getItem("token") == null) {
+      navigate("/login");
+    } else {
+    
     fetch("http://localhost:3000/app/songs")
       .then((response) => response.json())
       .then((data) => setSongs(data));
+
+    }
+
   }, []);
 
   useEffect(() => {
     setAddFilters(songs);
   }, [songs]);
 
-  const filterUniqueByProperty = (arr, property) => {
-    // filtra para que no repita las opciones en el select
+  const filterUniqueByProperty = (arr, property) => { // filtra para que no repita las opciones en el select
     return Array.from(new Set(arr.map((item) => item[property]))).map(
       (value) => {
         return arr.find((item) => item[property] === value);
@@ -32,8 +41,7 @@ const ContextualMusic = () => {
   const occasions = filterUniqueByProperty(songs, "occasion");
   const weathers = filterUniqueByProperty(songs, "weather");
 
-  const handleGenre = (value) => {
-    // agrega las cancioens segun lo seleccionado al array de canciones
+  const handleGenre = (value) => { // agrega las cancioens segun el genre al array de canciones
     const selectedValue = value;
     const filterObject = addFilters.filter(
       (filter) => selectedValue === filter.genre
@@ -41,16 +49,14 @@ const ContextualMusic = () => {
     setAddFilters(filterObject);
   };
 
-  const handleMood = (event) => {
-    // agrega las cancioens segun lo seleccionado al array de canciones
+  const handleMood = (event) => { // agrega las cancioens segun el mood al array de canciones
     const selectedValue = event.target.value;
     const filterObject = addFilters.filter((obj) => selectedValue === obj.mood);
 
     setAddFilters(filterObject);
   };
 
-  const handleOccasion = (event) => {
-    // agrega las cancioens segun lo seleccionado al array de canciones
+  const handleOccasion = (event) => { // agrega las cancioens segun occasion al array de canciones
     const selectedValue = event.target.value;
     const filterObject = addFilters.filter(
       (filter) => selectedValue === filter.occasion
@@ -58,8 +64,7 @@ const ContextualMusic = () => {
     setAddFilters(filterObject);
   };
 
-  const handleWeather = (event) => {
-    // agrega las cancioens segun lo seleccionado al array de canciones
+  const handleWeather = (event) => { // agrega las cancioens segun el weather al array de canciones
     const selectedValue = event.target.value;
     const filterObject = addFilters.filter(
       (filter) => selectedValue === filter.weather
@@ -67,12 +72,32 @@ const ContextualMusic = () => {
     setAddFilters(filterObject);
   };
 
-  // const uniqueData = addFilters.filter(
-  //   (item, index, self) =>
-  //     index === self.findIndex((obj) => obj.title === item.title) // filtra todo lo repetido, uniqueData es el array final
-  // );
+  const sendData = () => {
 
-  console.log(addFilters);
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const raw = JSON.stringify({
+      "song_id": "211",
+      "playlist_id": "5"
+    });
+
+    const requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow'
+    };
+
+    async function fetching() {
+      fetch("http://localhost:3000/app/create-playlist", requestOptions)
+        .then(response => response.text())
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error));
+    }
+    fetching();
+
+  };
 
   return (
     <main className="main w-screen h-screen max-w-md max-h-min m-auto relative">
@@ -160,7 +185,7 @@ const ContextualMusic = () => {
             );
           })}
         </div>
-        <button className="buttonCreate">Crear Playlist</button>
+        <button className="buttonCreate" onClick={sendData}>Crear Playlist</button>
       </section>
     </main>
   );

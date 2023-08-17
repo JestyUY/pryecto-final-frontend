@@ -94,7 +94,7 @@ function MusicalCupid() {
                         })}
                         </div>
                     </section>
-                    <OrangeButton text={"Create Playlist"} bgcolor={"bg-amber-500"} className="button" />
+                    <OrangeButton text={"Create Playlist"} bgcolor={"bg-amber-500"} className="button disabled:bg-slate-500"/>
                 </main>
             </div>
 
