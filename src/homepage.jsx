@@ -3,7 +3,7 @@ import NormalButton from "./components/normal-button";
 import OrangeButton from "./components/orange-button";
 import BgOrangeTop from "./components/bg-orange-top";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 const mainLogo = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
