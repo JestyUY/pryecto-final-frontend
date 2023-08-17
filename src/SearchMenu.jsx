@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import InputStandar from "./components/InputStandar";
 import BgOrangeTop from "./components/bg-orange-top";
 import { useNavigate } from "react-router";
+import Footer from "./components/Footer";
 function SearchMenu() {
   const navigate = useNavigate();
   const [songs, setSongs] = useState([]);
+  // const [loading, setLoading] = useState()
 
   useEffect(() => {
     async function fetchData() {
@@ -31,7 +33,7 @@ function SearchMenu() {
     }
   }, []);
   return (
-    <main className="w-screen h-screen max-w-md max-h-min m-auto relative">
+    <main className="w-screen h-screen max-w-md  max-h-min m-auto relative">
       <BgOrangeTop />
       <nav className="absolute top-[8%] w-[90%] left-0 right-0 m-auto">
         <h2 className="pb-4 text-2xl">Buscador</h2>
@@ -42,7 +44,7 @@ function SearchMenu() {
         <span className="bg-slate-300 w-full h-[2px] block shrink"></span>
       </div>
       <section className="absolute top-[28%] w-[90%] left-0 right-0 m-auto ">
-        <ul className="flex flex-wrap place-content-evenly ">
+        <ul className="flex flex-wrap place-content-evenly pb-20 ">
           {songs.map((ob) => (
             <li className="w-[45%]  flex flex-col ">
               <img className="h-[158px] " src={ob.image} alt="" />
@@ -52,6 +54,7 @@ function SearchMenu() {
           ))}
         </ul>
       </section>
+      <Footer />
     </main>
   );
 }
