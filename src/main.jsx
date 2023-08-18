@@ -48,7 +48,7 @@ const router = createBrowserRouter([
     path: "/profile",
     element: <UserProfile />,
   },
-  { path: "detailedplaylist", element: <DetailedPlaylist /> },
+  { path: "/detailedplaylist", element: <DetailedPlaylist /> },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

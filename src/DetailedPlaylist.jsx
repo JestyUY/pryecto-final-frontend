@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import StandarHeader from "./components/StandarHeader";
 import BgOrangeTop from "./components/bg-orange-top";
+import { useNavigate } from "react-router";
 
 const audnLogo = (
   <svg
@@ -59,13 +60,40 @@ const timeIcon = (
   </svg>
 );
 function DetailedPlaylist() {
+  const navigate = useNavigate();
   const [songs, setSongs] = useState([]);
+  
+  const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+  
+  const requestOptions = {
+    method: 'GET',
+    headers: {
+      "Content-type": "application/json",
+      authorization: `${localStorage.getItem("token")}`
+    },
+    redirect: 'follow'
+  };
 
   useEffect(() => {
-    fetch("http://localhost:3000/app/songs")
-      .then((response) => response.json())
-      .then((data) => setSongs(data));
-  }, []);
+    
+    if (localStorage.getItem("token") == null) {
+      navigate("/login");
+    } else {
+  const fetchData = async () => {
+      try {
+          const response = await fetch("http://localhost:3000/app/play-list-byuser", requestOptions);
+          const data = await response.json();
+          setSongs(data);
+      } catch (error) {
+          console.error("Error fetching data:", error);
+      }
+  };
+
+  fetchData();
+}}, []);
+
+console.log(songs)
 
   return (
     <main className="w-screen h-screen max-w-md max-h-min m-auto relative">
@@ -75,22 +103,22 @@ function DetailedPlaylist() {
       <section className=" grid grid-cols-2 grid-rows-2 w-[62%] h-[30%] absolute top-28 left-0 right-0 m-auto ">
         <img
           className="w-full h-full row-span-1 "
-          src={songs[0]?.image}
+          src=""
           alt=""
         />
         <img
           className="w-full h-full  row-span-1 rounded-tr-3xl "
-          src={songs[1]?.image}
+          src=""
           alt=""
         />
         <img
           className="w-full h-full  row-span-1 rounded-bl-3xl"
-          src={songs[2]?.image}
+          src=""
           alt=""
         />
         <img
           className="w-full h-full  row-span-1  "
-          src={songs[3]?.image}
+          src=""
           alt=""
         />
       </section>

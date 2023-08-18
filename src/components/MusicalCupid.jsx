@@ -3,6 +3,7 @@ import arrowLeft from "../assets/Images/arrowLeft.svg"
 import OrangeButton from "../components/orange-button";
 import InputStandar from "./InputStandar";
 import React, { useEffect, useState } from "react"
+import { useNavigate } from "react-router";
 
 
 function MusicalCupid() {
@@ -12,6 +13,7 @@ function MusicalCupid() {
     const [playlist, setPlaylist] = useState([]);
     const [artist, setArtist] = useState([]);
     const [playlistName, setPlaylistName] = useState("");
+    const navigate = useNavigate();
     
 
 
@@ -97,7 +99,8 @@ function MusicalCupid() {
             .then(result => console.log(result))
             .catch(error => console.log('error', error));
         }
-        fetching();
+        fetching()
+            .then(navigate("/detailedplaylist"))
         
     };
     
