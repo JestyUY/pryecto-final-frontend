@@ -8,6 +8,10 @@ const ContextualMusic = () => {
   const [playlistName, setPlaylistName] = useState("");
   const [songs, setSongs] = useState([]);
   const [addFilters, setAddFilters] = useState(songs);
+  const [weather, setWeather] = useState(undefined);
+  const [occasion, setOccasion] = useState(undefined);
+  const [mood, setMood] = useState(undefined);
+  const [genre, setGenre] = useState(undefined);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -43,34 +47,39 @@ const ContextualMusic = () => {
 
   const handleGenre = (value) => { // agrega las cancioens segun el genre al array de canciones
     const selectedValue = value;
-    const filterObject = addFilters.filter(
-      (filter) => selectedValue === filter.genre
-    );
-    setAddFilters(filterObject);
+    // const filterObject = addFilters.filter(
+    //   (filter) => selectedValue === filter.genre
+    // );
+    // setAddFilters(filterObject);
+    setGenre(selectedValue)
   };
 
   const handleMood = (event) => { // agrega las cancioens segun el mood al array de canciones
     const selectedValue = event.target.value;
-    const filterObject = addFilters.filter((obj) => selectedValue === obj.mood);
+    // const filterObject = addFilters.filter((obj) => selectedValue === obj.mood);
 
-    setAddFilters(filterObject);
+    // setAddFilters(filterObject);
+    setMood(selectedValue)
   };
 
   const handleOccasion = (event) => { // agrega las cancioens segun occasion al array de canciones
     const selectedValue = event.target.value;
-    const filterObject = addFilters.filter(
-      (filter) => selectedValue === filter.occasion
-    );
-    setAddFilters(filterObject);
+    // const filterObject = addFilters.filter(
+    //   (filter) => selectedValue === filter.occasion
+    // );
+    // setAddFilters(filterObject);
+    setOccasion(selectedValue)
   };
 
   const handleWeather = (event) => { // agrega las cancioens segun el weather al array de canciones
     const selectedValue = event.target.value;
-    const filterObject = addFilters.filter(
-      (filter) => selectedValue === filter.weather
-    );
-    setAddFilters(filterObject);
+    // const filterObject = addFilters.filter(
+    //   (filter) => selectedValue === filter.weather
+    // );
+    // setAddFilters(filterObject);
+    setWeather(selectedValue)
   };
+
 
   const sendData = () => {
 
@@ -78,13 +87,19 @@ const ContextualMusic = () => {
     myHeaders.append("Content-Type", "application/json");
 
     const raw = JSON.stringify({
-      "song_id": "211",
-      "playlist_id": "5"
+      "name": playlistName,
+      "occasion": occasion,
+      "weather": weather,
+      "mood": mood,
+      "genre": genre 
     });
 
     const requestOptions = {
       method: 'POST',
-      headers: myHeaders,
+      headers: {
+        "Content-type": "application/json",
+        authorization: `${localStorage.getItem("token")}`, // notice the Bearer before your token
+      },
       body: raw,
       redirect: 'follow'
     };
@@ -96,6 +111,7 @@ const ContextualMusic = () => {
         .catch(error => console.log('error', error));
     }
     fetching();
+
 
   };
 
