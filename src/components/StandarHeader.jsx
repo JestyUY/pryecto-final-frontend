@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 const backArrow = (
   <svg
@@ -19,10 +20,13 @@ const backArrow = (
 );
 
 function StandarHeader({ text, url }) {
+
+  const navigate = useNavigate();
+  
   return (
     <nav className="flex absolute w-full justify-between p-4 pt-8 text-xl font-semibold items-center ">
       <Link to={url}>
-        <span className="scale-150">{backArrow}</span>
+        <span className="scale-150" onClick={() => navigate("/menu")}>{backArrow}</span>
       </Link>
       <span>{text}</span>
       <span></span>

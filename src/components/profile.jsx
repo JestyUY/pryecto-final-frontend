@@ -2,6 +2,7 @@ import BgOrangeTop from "../components/bg-orange-top";
 import "./profile.css";
 import React, { useEffect, useState } from "react";
 import gato from "../assets/Images/gato.jpg";
+import { useNavigate } from "react-router";
 
 const clock = (
   <svg
@@ -129,8 +130,10 @@ const friends = (
 );
 
 function UserProfile() {
+  
   const [user, setUser] = useState([]);
   const [songs, setSongs] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -192,12 +195,12 @@ function UserProfile() {
         </button>
       </section>
       <section className="sectionPlaylist">
-        <div className="flex flex-col justify-center items-center">
+        <div className="flex flex-col justify-center items-center" onClick={() => navigate("/detailedplaylist")}>
           <img src={songs[0]?.image} alt="" className="playlistImage" />
           <h3>{songs[0]?.title}</h3>
           <span>{user[0]?.username}</span>
         </div>
-        <div className="flex flex-col justify-center items-center">
+        <div className="flex flex-col justify-center items-center" onClick={() => navigate("/detailedplaylist")}>
           <img src={songs[5]?.image} alt="" className="playlistImage" />
           <h3>{songs[5]?.title}</h3>
           <span>{user[0]?.username}</span>
@@ -205,14 +208,14 @@ function UserProfile() {
       </section>
       <footer className="flex absolute bottom-0 left-0 right-0 justify-around ">
         <button className="flex flex-col items-center">
-          <span className="scale-75">{home}</span>
+          <span className="scale-75" onClick={() => navigate("/menu")}>{home}</span>
           <span>Home</span>
         </button>
         <button className="flex flex-col">
-          <span className="scale-75">{search}</span> <span>Search</span>
+          <span className="scale-75" onClick={() => navigate("/search")}>{search}</span> <span>Search</span>
         </button>
         <button className="flex flex-col">
-          <span className="scale-75">{profile}</span>
+          <span className="scale-75" onClick={() => navigate("/profile")}>{profile}</span>
           <span>Profile</span>
         </button>
         <button className="flex flex-col">

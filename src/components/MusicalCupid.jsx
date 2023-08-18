@@ -111,7 +111,7 @@ function MusicalCupid() {
                 <header className="header" >
                     <div className="navConteiner">
                         <nav className="navBar">
-                            <div className="divArrow">
+                            <div className="divArrow" onClick={() => navigate("/menu")}>
                                 <img src={arrowLeft} className="arrowLeft" alt="arrowLeft" />
                             </div>
                             <div>

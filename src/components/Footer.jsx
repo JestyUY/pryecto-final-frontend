@@ -81,14 +81,14 @@ function Footer() {
         className="flex flex-col items-center"
         onClick={() => navigate("/menu")}
       >
-        <span className="scale-75">{home}</span>
+        <span className="scale-75" onClick={() => navigate("/main")}>{home}</span>
         <span>Home</span>
       </button>
       <button className="flex flex-col" onClick={() => navigate("/search")}>
         <span className="scale-75">{search}</span> <span>Search</span>
       </button>
       <button className="flex flex-col">
-        <span className="scale-75">{profile}</span>
+        <span className="scale-75" onClick={() => navigate("/profile")}>{profile}</span>
         <span>Profile</span>
       </button>
       <button className="flex flex-col">

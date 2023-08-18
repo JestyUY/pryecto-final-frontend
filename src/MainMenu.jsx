@@ -1,5 +1,7 @@
 import Footer from "./components/Footer";
 import BgOrangeTop from "./components/bg-orange-top";
+import React, { useEffect, useState } from "react"
+import { useNavigate } from "react-router";
 
 const clock = (
   <svg
@@ -34,7 +36,12 @@ const bell = (
   </svg>
 );
 
+
+
 function MainMenu() {
+
+  const navigate = useNavigate();
+
   return (
     <main className="w-screen h-screen max-w-md max-h-min m-auto relative ">
       <BgOrangeTop />
@@ -43,17 +50,17 @@ function MainMenu() {
         <button>{clock}</button>
         <button>{bell}</button>
       </nav>
-      <section className="pt-[30%]  w-[90%] mx-auto  ">
-        <article className="flex justify-between border mx-auto rounded-bl-3xl rounded-tr-3xl shadow-md ">
+      <section className="pt-[30%]  w-[90%] mx-auto">
+        <article className="flex justify-between border mx-auto rounded-bl-3xl rounded-tr-3xl shadow-md " onClick={() => navigate("/musicalcupid")}>
           <div className="bg-[url('C:\Users\Martin\Desktop\senpai-bootcamp\pryecto-final-frontend\src\assets\Images\logoCupidoMusical.jpg')] bg-cover w-[100px] h-[100px] rounded-bl-3xl"></div>
-          <div className="w-[70%] ">
+          <div className="w-[70%]">
             <h3 className="font-medium pt-1">Cupido Musical</h3>
             <p>
               Tus artistas favoritos nunca van a dejarte con el corazon roto.
             </p>
           </div>
         </article>
-        <article className="flex justify-between border mx-auto rounded-bl-3xl rounded-tr-3xl shadow-md mt-3">
+        <article className="flex justify-between border mx-auto rounded-bl-3xl rounded-tr-3xl shadow-md mt-3" onClick={() => navigate("/contextualmusic")}>
           <div className="bg-[url('C:\Users\Martin\Desktop\senpai-bootcamp\pryecto-final-frontend\src\assets\Images\logoMusicaC.jpg')] bg-cover w-[100px] h-[100px] rounded-bl-3xl"></div>
           <div className="w-[70%] ">
             <h3 className="font-medium pt-1">Musica Contextual</h3>

@@ -119,7 +119,7 @@ const ContextualMusic = () => {
     <main className="main w-screen h-screen max-w-md max-h-min m-auto relative">
       <div className="navConteiner">
         <nav className="navBar">
-          <div className="divArrow">
+          <div className="divArrow" onClick={() => navigate("/menu")}>
             <img src={arrowLeft} className="arrowLeft" alt="arrowLeft" />
           </div>
           <div>
