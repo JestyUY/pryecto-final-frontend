@@ -13,6 +13,7 @@ import SearchMenu from "./SearchMenu";
 import ContextualMusic from "./components/ContextualMusic";
 import MusicalCupid from "./components/MusicalCupid";
 import UserProfile from "./components/profile";
+import DetailedPlaylist from "./DetailedPlaylist";
 
 const router = createBrowserRouter([
   {
@@ -33,11 +34,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/search",
-    element: <SearchMenu />
+    element: <SearchMenu />,
   },
   {
     path: "/contextualmusic",
-    element: <ContextualMusic />
+    element: <ContextualMusic />,
   },
   {
     path: "/musicalcupid",
@@ -47,6 +48,7 @@ const router = createBrowserRouter([
     path: "/profile",
     element: <UserProfile />,
   },
+  { path: "detailedplaylist", element: <DetailedPlaylist /> },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
